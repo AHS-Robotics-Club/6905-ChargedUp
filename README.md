@@ -1,6 +1,6 @@
 # 6905-ChargedUp
 
-Team 6905, Raiders of the ARC Tear-A-Byte's official team code for the 2022-23 FRC season.
+The official team code for team 6905, Raiders of the ARC Tear-A-Byte, for the 2022-23 FRC season.
 
 ## Installation Notes
 
