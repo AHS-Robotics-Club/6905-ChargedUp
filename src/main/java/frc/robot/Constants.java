@@ -1,5 +1,8 @@
 package frc.robot;
 
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.util.Units;
+
 public class Constants {
 
     // TODO: Update all constants
@@ -25,6 +28,11 @@ public class Constants {
 
         // Drive velocity
         public static final double P_DRIVE_VEL = 8.5;
+
+        // Kinematics Constants
+        public static final double TRACKWIDTH_METERS = Units.inchesToMeters(20);
+        public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
+            new DifferentialDriveKinematics(TRACKWIDTH_METERS);
 
     }
 

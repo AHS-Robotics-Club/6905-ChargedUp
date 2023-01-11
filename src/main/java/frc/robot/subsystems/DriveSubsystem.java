@@ -5,7 +5,6 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.math.util.Units;
@@ -35,7 +34,6 @@ public class DriveSubsystem extends SubsystemBase {
 
     private final DifferentialDrive drive;
     private final DifferentialDriveOdometry odometry;
-    private final DifferentialDriveKinematics kinematics;
 
     public DriveSubsystem() {
 
@@ -62,7 +60,6 @@ public class DriveSubsystem extends SubsystemBase {
         odometry = new DifferentialDriveOdometry(gyro.getRotation2d(), 0, 0);
 
         // TODO: Find trackwidth
-        kinematics = new DifferentialDriveKinematics(Units.inchesToMeters(20));
 
         // Initializes drivetrain
         drive = new DifferentialDrive(leftMain, rightMain);
