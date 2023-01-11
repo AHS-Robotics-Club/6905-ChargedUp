@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.IOConstants;
+import frc.robot.auton.commands.RamseteTestAuton;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class RobotContainer {
@@ -42,6 +43,9 @@ public class RobotContainer {
 
   // Calls our autonomous command
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+
+    // Test Auton with custom classes
+    return new RamseteTestAuton(driveSubsystem);
+
   }
 }

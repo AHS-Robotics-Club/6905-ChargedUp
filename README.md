@@ -6,12 +6,9 @@ The official team code for team 6905, Raiders of the ARC Tear-A-Byte, for the 20
 
 ### CAN Spark MAX Libraries
 
+
 Click on the WPI icon in the corner to open the WPI Command Pallet.
 Select Manage Vendor Libraries.
 Select Install new library (online).
 Enter the following installation URL and press ENTER
-<<<<<<< HEAD
 https://software-metadata.revrobotics.com/REVLib-2023.json
-=======
-https://software-metadata.revrobotics.com/REVLib-2023.json
->>>>>>> drive
