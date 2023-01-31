@@ -15,7 +15,7 @@ public class Constants {
         public static final int RIGHT_MOTOR_PORT_2 = 8;
 
         // Drive motor speeds
-        public static final double MAX_OUTPUT = 0.8;
+        public static final double MAX_OUTPUT = 0.5; // 0.8
         public static final double MIN_OUTPUT = 0.2;
 
         // Voltage
