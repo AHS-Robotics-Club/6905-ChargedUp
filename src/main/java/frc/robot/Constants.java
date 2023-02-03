@@ -1,5 +1,7 @@
 package frc.robot;
 
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+
 public class Constants {
 
     // TODO: Update all constants
@@ -18,13 +20,24 @@ public class Constants {
         public static final double MAX_OUTPUT = 0.5; // 0.8
         public static final double MIN_OUTPUT = 0.2;
 
+        // Encoder Stuff
+        public static final int ENCODER_CPR = 1024;
+        public static final double WHEEL_DIAMETER_METERS = 0.15;
+        public static final double ENCODER_DISTANCE_PER_PULSE =
+            // Assumes the encoders are directly mounted on the wheel shafts
+            (WHEEL_DIAMETER_METERS * Math.PI) / (double) ENCODER_CPR;
+
         // Voltage
         public static final double S_VOLTS = 0.22;
         public static final double V_VOLT_SECONDS_PER_METER = 1.98;
         public static final double A_VOLT_SECONDS_SQUARED_PER_METER = 0.2;
 
-        // Drive velocity
+        // Drive stuffs
         public static final double P_DRIVE_VEL = 8.5;
+        public static final double TRACKWIDTH_METERS = 0.69;
+        public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
+            new DifferentialDriveKinematics(TRACKWIDTH_METERS);
+
 
     }
 

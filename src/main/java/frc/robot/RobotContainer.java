@@ -5,11 +5,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.IOConstants;
+import frc.robot.autons.CollectCubeTMBlue;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class RobotContainer {
@@ -45,9 +44,9 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
 
     // Test Auton with custom classes
-    // return new RamseteTestAuton(driveSubsystem);
-    // return new CollectCubeTMBlueAuton(driveSubsystem);
-    return new PrintCommand("Auton not being made.");
+    // return new PrintCommand("Auton not being made.");
+
+    return new CollectCubeTMBlue();
 
   }
 }

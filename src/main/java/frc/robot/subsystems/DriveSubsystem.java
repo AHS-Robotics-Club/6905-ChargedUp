@@ -1,17 +1,25 @@
 package frc.robot.subsystems;
 
+import java.util.Map;
+
+import com.pathplanner.lib.auto.PIDConstants;
+import com.pathplanner.lib.auto.RamseteAutoBuilder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.math.controller.RamseteController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
@@ -47,11 +55,13 @@ public class DriveSubsystem extends SubsystemBase {
 
         leftEncoder = leftMain.getEncoder();
         rightEncoder = rightMain.getEncoder();
-        resetEncoders();
 
+        leftEncoder.setPositionConversionFactor(DriveConstants.ENCODER_DISTANCE_PER_PULSE);
+        rightEncoder.setPositionConversionFactor(DriveConstants.ENCODER_DISTANCE_PER_PULSE);
+
+        resetEncoders();
         odometry = new DifferentialDriveOdometry(gyro.getRotation2d(), leftEncoder.getPosition(), rightEncoder.getPosition());
         drive = new DifferentialDrive(leftMain, rightMain);
-        setToMaxOutput(); 
 
     }
 
@@ -161,6 +171,29 @@ public class DriveSubsystem extends SubsystemBase {
 
     public RelativeEncoder getRightEncoder() {
         return rightEncoder;
+    }
+
+    /** Pathplanner **/
+
+    public RamseteAutoBuilder getRamseteAutoBuilder(Map<String, Command> eventMap) {
+
+        return new RamseteAutoBuilder(
+            this::getPose,
+            this::resetOdometry,    
+            new RamseteController(AutoConstants.RAMSETE_B, AutoConstants.RAMSETE_ZETA),
+            DriveConstants.DRIVE_KINEMATICS,
+            new SimpleMotorFeedforward(
+                  DriveConstants.S_VOLTS,
+                  DriveConstants.V_VOLT_SECONDS_PER_METER,
+                  DriveConstants.A_VOLT_SECONDS_SQUARED_PER_METER),
+            this::getWheelSpeeds,
+            new PIDConstants(DriveConstants.P_DRIVE_VEL, 0, 0),
+            this::driveVolts,
+            eventMap,
+            true,
+            this
+        );        
+
     }
 
 }
