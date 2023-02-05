@@ -55,7 +55,7 @@ public class CollectCubeTMBlue extends SequentialCommandGroup {
     eventMap.put("intakeOff", new PrintCommand("Turn off intake"));
     eventMap.put("outtakeBlock", new PrintCommand("Outtake the block"));
 
-    var autoBuilder = driveS.getRamseteAutoBuilder(eventMap);
+    var autoBuilder = driveS.genRamseteAutoBuilder(eventMap);
 
     addCommands(
       Commands.runOnce(() -> driveS.resetOdometry(pathGroup.get(0).getInitialPose())),
