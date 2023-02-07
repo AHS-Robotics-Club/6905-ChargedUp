@@ -35,14 +35,10 @@ public class CollectCubeTMBlue extends SequentialCommandGroup {
    * - Increased tourism and GDP
    */
 
-  private DriveSubsystem driveS;
-
   private List<PathPlannerTrajectory> pathGroup;
   private HashMap<String, Command> eventMap = new HashMap<>();
 
-  public CollectCubeTMBlue() {
-
-    driveS = new DriveSubsystem();
+  public CollectCubeTMBlue(DriveSubsystem driveS) {
 
     // Gets the path from the pathplanner generated file
     pathGroup = PathPlanner.loadPathGroup(

@@ -46,7 +46,7 @@ public class RobotContainer {
     // Test Auton with custom classes
     // return new PrintCommand("Auton not being made.");
 
-    return new CollectCubeTMBlue();
+    return new CollectCubeTMBlue(driveSubsystem);
 
   }
 }
