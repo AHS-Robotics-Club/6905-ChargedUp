@@ -31,7 +31,7 @@ public class Constants {
     public static final class IOConstants {
 
         // Xbox Controller
-        public static final int DRIVER_CONTROLLER_PORT_1 = 0;
+        public static final int DRIVER_CONTROLLER_PORT_1 = 1;
 
     }
 
