@@ -42,9 +42,9 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    // controller.leftBumper()
-    //   .onTrue(Commands.run(() -> driveSubsystem.setToSlowOutput()))
-    //   .onFalse(Commands.run(() -> driveSubsystem.setToMaxOutput()));
+    controller.leftBumper()
+      .onTrue(Commands.run(() -> driveSubsystem.setOutput(0.3)))
+      .onFalse(Commands.run(() -> driveSubsystem.setOutput(1)));
 
   }
 

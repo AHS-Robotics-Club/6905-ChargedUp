@@ -43,9 +43,14 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     public void driveVolts(double leftVolts, double rightVolts) {
-      leftMain.setVoltage(leftVolts);
-      rightMain.setVoltage(rightVolts);
-      drive.feed();
+        leftMain.setVoltage(leftVolts);
+        rightMain.setVoltage(rightVolts);
+        drive.feed();
+    }
+
+    public void setOutput(double outputSpeed) {
+        leftMain.set(outputSpeed);
+        rightMain.set(outputSpeed);
     }
 
 }
