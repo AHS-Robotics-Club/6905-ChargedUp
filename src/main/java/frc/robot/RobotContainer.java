@@ -9,15 +9,20 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.IOConstants;
+import frc.robot.commands.IntakeCommand;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ITSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
 public class RobotContainer {
 
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  private final IntakeSubsystem intake = new IntakeSubsystem();
+  private final ITSubsystem itSubsystem = new ITSubsystem();
 
-  CommandXboxController controller = new CommandXboxController(IOConstants.DRIVER_CONTROLLER_PORT_1);
-
+  CommandXboxController controller = new CommandXboxController(IOConstants.DRIVER_CONTROLLER_PORT_1); 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -41,10 +46,18 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    //region Intake
+    controller.leftTrigger(0.2)
+      .onTrue(new IntakeCommand(intake, itSubsystem, false));
+    controller.rightTrigger(0.2)
+      .onTrue(new IntakeCommand(intake, itSubsystem, true));
+    //endregion
 
     controller.leftBumper()
       .onTrue(Commands.run(() -> driveSubsystem.setOutput(0.3)))
       .onFalse(Commands.run(() -> driveSubsystem.setOutput(1)));
+
+    
 
   }
 
