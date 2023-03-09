@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.IOConstants;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.subsystems.DriveSubsystem;
@@ -61,6 +60,7 @@ public class RobotContainer {
       .onFalse(Commands.run(() -> driveSubsystem.setOutput(1)));
     //endregion
   
+    //region Lift
     controller.pov(0)
     .onTrue(Commands.run(() -> liftSubsytem.liftUp()))
     .onFalse(Commands.run(() -> liftSubsytem.liftStop()));
@@ -68,7 +68,9 @@ public class RobotContainer {
     controller.pov(180)
     .onTrue(Commands.run(() -> liftSubsytem.liftDown()))
     .onFalse(Commands.run(() -> liftSubsytem.liftStop()));
+    //endregion
 
+    //region Spindle
     controller.y()
     .onTrue(Commands.run(() -> liftSubsytem.spindleUp()))
     .onFalse(Commands.run(() -> liftSubsytem.spindleStop()));
@@ -76,6 +78,7 @@ public class RobotContainer {
     controller.a()
     .onTrue(Commands.run(() -> liftSubsytem.spindleDown()))
     .onFalse(Commands.run(() -> liftSubsytem.spindleStop()));
+    //endregion
   }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
