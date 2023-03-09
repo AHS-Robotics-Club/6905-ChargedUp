@@ -35,6 +35,5 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void dropIntake() {
         solenoid.set(true);
-    }
-    
+    }    
 }

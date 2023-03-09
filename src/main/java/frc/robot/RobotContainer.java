@@ -13,14 +13,16 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.IOConstants;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.ITSubsystem;
+import frc.robot.subsystems.GripperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.LiftSubsystem;
 
 public class RobotContainer {
 
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
   private final IntakeSubsystem intake = new IntakeSubsystem();
-  private final ITSubsystem itSubsystem = new ITSubsystem();
+  private final GripperSubsystem itSubsystem = new GripperSubsystem();
+  private final LiftSubsystem lifts = new LiftSubsystem();
 
   CommandXboxController controller = new CommandXboxController(IOConstants.DRIVER_CONTROLLER_PORT_1); 
   /**
@@ -52,20 +54,24 @@ public class RobotContainer {
     controller.rightTrigger(0.2)
       .onTrue(new IntakeCommand(intake, itSubsystem, true));
     //endregion
-
+    
+    //region Slow Mode
     controller.leftBumper()
       .onTrue(Commands.run(() -> driveSubsystem.setOutput(0.3)))
       .onFalse(Commands.run(() -> driveSubsystem.setOutput(1)));
+    //endregion
 
-    
-
+    // //region Lifts
+    // controller.y()
+    // .onTrue(Commands.run(() -> lifts.liftUp()));
+    // controller.
+  
   }
-
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
-   * @return the command to run in autonomous
-   */
+   * @/return the command to run in autonomous
+   */7
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return Commands.print("No autonomous command");

@@ -54,8 +54,13 @@ public class Constants {
         public static final int RIGHT_MOTOR_INTAKE = 2;
 
         public static final int SOLENOID_INTAKE = 1;
-        public static final int LEFT_MOTOR_ITS = 3;
-        public static final int RIGHT_MOTOR_ITS = 4;
+        public static final int LEFT_MOTOR_GRIPPER = 3;
+        public static final int RIGHT_MOTOR_GRIPPER = 4;
+
+        public static final int LEFT_MOTOR_LIFT = 5; 
+        public static final int RIGHT_MOTOR_LIFT = 9;
+        public static final int LEFT_MOTOR_SPLINDLE = 10; 
+        public static final int RIGHT_MOTOR_SPLINDLE = 11; 
 
     }
 

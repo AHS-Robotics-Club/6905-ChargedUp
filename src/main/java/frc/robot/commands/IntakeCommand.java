@@ -1,17 +1,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ITSubsystem;
+import frc.robot.subsystems.GripperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 
 public class IntakeCommand extends CommandBase {
 
     private IntakeSubsystem intake; 
-    private ITSubsystem transport;
+    private GripperSubsystem transport;
 
     private boolean isReversed;
 
-    public IntakeCommand(IntakeSubsystem gripper, ITSubsystem its, boolean isReversed){
+    public IntakeCommand(IntakeSubsystem gripper, GripperSubsystem its, boolean isReversed){
         intake = gripper;
         transport = its;
 
