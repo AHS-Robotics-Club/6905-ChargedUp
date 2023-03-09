@@ -20,9 +20,9 @@ import frc.robot.subsystems.LiftSubsystem;
 public class RobotContainer {
 
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
-  private final IntakeSubsystem intake = new IntakeSubsystem();
-  private final GripperSubsystem itSubsystem = new GripperSubsystem();
-  private final LiftSubsystem lifts = new LiftSubsystem();
+  private final IntakeSubsystem intakeSubsytem = new IntakeSubsystem();
+  private final GripperSubsystem gripperSubsystem = new GripperSubsystem();
+  private final LiftSubsystem liftSubsytem = new LiftSubsystem();
 
   CommandXboxController controller = new CommandXboxController(IOConstants.DRIVER_CONTROLLER_PORT_1); 
   /**
@@ -45,14 +45,14 @@ public class RobotContainer {
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing
    * it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   * edu.wpi.first.-wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
     //region Intake
     controller.leftTrigger(0.2)
-      .onTrue(new IntakeCommand(intake, itSubsystem, false));
+      .onTrue(new IntakeCommand(intakeSubsytem, gripperSubsystem, false));
     controller.rightTrigger(0.2)
-      .onTrue(new IntakeCommand(intake, itSubsystem, true));
+      .onTrue(new IntakeCommand(intakeSubsytem, gripperSubsystem, true));
     //endregion
     
     //region Slow Mode
@@ -60,18 +60,28 @@ public class RobotContainer {
       .onTrue(Commands.run(() -> driveSubsystem.setOutput(0.3)))
       .onFalse(Commands.run(() -> driveSubsystem.setOutput(1)));
     //endregion
-
-    // //region Lifts
-    // controller.y()
-    // .onTrue(Commands.run(() -> lifts.liftUp()));
-    // controller.
   
+    controller.pov(0)
+    .onTrue(Commands.run(() -> liftSubsytem.liftUp()))
+    .onFalse(Commands.run(() -> liftSubsytem.liftStop()));
+
+    controller.pov(180)
+    .onTrue(Commands.run(() -> liftSubsytem.liftDown()))
+    .onFalse(Commands.run(() -> liftSubsytem.liftStop()));
+
+    controller.y()
+    .onTrue(Commands.run(() -> liftSubsytem.spindleUp()))
+    .onFalse(Commands.run(() -> liftSubsytem.spindleStop()));
+
+    controller.a()
+    .onTrue(Commands.run(() -> liftSubsytem.spindleDown()))
+    .onFalse(Commands.run(() -> liftSubsytem.spindleStop()));
   }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @/return the command to run in autonomous
-   */7
+   */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return Commands.print("No autonomous command");

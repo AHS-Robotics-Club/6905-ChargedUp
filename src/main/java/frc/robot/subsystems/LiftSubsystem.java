@@ -18,7 +18,7 @@ public class LiftSubsystem extends SubsystemBase {
 
     public LiftSubsystem() {
         rightLiftMotor.follow(leftLiftMotor, true);
-        leftSpindleMotor.follow(rightSpindleMotor, true);
+        rightSpindleMotor.follow(leftSpindleMotor, true);
 
         leftLiftMotor.setIdleMode(IdleMode.kBrake);
         rightLiftMotor.setIdleMode(IdleMode.kBrake);
@@ -28,11 +28,15 @@ public class LiftSubsystem extends SubsystemBase {
     }
 
     public void liftUp() {
-        rightLiftMotor.set(0.5);
+        leftLiftMotor.set(0.5);
     }
 
     public void liftDown() {
-        rightLiftMotor.set(-0.5);
+        leftLiftMotor.set(-0.5);
+    }
+
+    public void liftStop() {
+        leftLiftMotor.stopMotor();
     }
 
     public void spindleUp() {
@@ -41,6 +45,10 @@ public class LiftSubsystem extends SubsystemBase {
 
     public void spindleDown() {
         leftSpindleMotor.set(-0.5);
-    };
+    }
+
+    public void spindleStop() {
+        leftSpindleMotor.stopMotor();
+    }
     
 } 

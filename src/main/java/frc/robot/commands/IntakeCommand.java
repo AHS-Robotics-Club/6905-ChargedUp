@@ -7,34 +7,33 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class IntakeCommand extends CommandBase {
 
     private IntakeSubsystem intake; 
-    private GripperSubsystem transport;
+    private GripperSubsystem gripper;
 
     private boolean isReversed;
 
-    public IntakeCommand(IntakeSubsystem gripper, GripperSubsystem its, boolean isReversed){
-        intake = gripper;
-        transport = its;
+    public IntakeCommand(IntakeSubsystem intake, GripperSubsystem gripper, boolean isReversed){
+        this.intake = intake;
+        this.gripper = gripper;
 
         this.isReversed = isReversed;
 
-        addRequirements(intake);
-        addRequirements(transport);
+        addRequirements(intake, gripper);
     }
 
     @Override
     public void initialize(){
         if (isReversed) {
             intake.outtake();
-            transport.outtake();
+            gripper.outtake();
         } else {
             intake.intake();
-            transport.intake();
+            gripper.intake();
         }
     }
 
     @Override
     public void end(boolean interrupted){
         intake.stop();
-        transport.stop();
+        gripper.stop();
     }
 }

@@ -22,15 +22,15 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public void intake() {
-        rightMotor.set(0.5);
+        leftMotor.set(0.5);
     }
 
     public void stop() {
-        rightMotor.stopMotor();
+        leftMotor.stopMotor();
     }
 
     public void outtake() {
-        rightMotor.set(-0.5);
+        leftMotor.set(-0.5);
     }
 
     public void dropIntake() {
